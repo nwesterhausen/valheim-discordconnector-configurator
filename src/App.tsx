@@ -1,28 +1,23 @@
-import type { Component } from 'solid-js';
+import { Route, Routes } from '@solidjs/router';
+import { Component, createSignal } from 'solid-js';
+import AppMenu from './components/AppMenu';
+import About from './pages/About';
+import Editor from './pages/Editor';
+import Preview from './pages/Preview';
+import Settings from './pages/Settings';
+import { ConfigLocation } from './settings';
 
 const App: Component = () => {
+  const [activeConfig, setActiveConfig] = createSignal<ConfigLocation>();
   return (
     <>
-      <section class='hero'>
-        <div class='hero-body'>
-          <h1 class='title'>Content To-Do</h1>
-        </div>
-      </section>
-      <section class='section'>
-        <h3 class='heading'>App Load:</h3>
-        <ul class='list'>
-          <li class='list-item'>If no recent config paths available, show a helpful message</li>
-          <li class='list-item'>If there are recent config paths, use the most recent one</li>
-        </ul>
-      </section>
-      <section class='section'>
-        <h3 class='heading'>Nav Menu</h3>
-        <ul class='list'>
-          <li class='list-item'>"Edit Pane" editing the config files</li>
-          <li class='list-item'>"Preview Pane" seeing a sample output</li>
-          <li class='list-item'>"Open (dropdown)" choosing a recent config path OR adding a new one</li>
-        </ul>
-      </section>
+      <AppMenu />
+      <Routes>
+        <Route path='/about' element={<About />} />
+        <Route path='/settings' element={<Settings />} />
+        <Route path='/editor' element={<Editor />} />
+        <Route path='/preview' element={<Preview />} />
+      </Routes>
     </>
   );
 };
