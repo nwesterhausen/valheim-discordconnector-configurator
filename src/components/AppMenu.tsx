@@ -1,17 +1,8 @@
 import { AiOutlineInfoCircle, AiTwotoneEdit, AiTwotoneEye, AiTwotoneFolderAdd, AiTwotoneFolderOpen, AiTwotoneSetting } from 'solid-icons/ai';
-import { Component, createResource, For } from "solid-js";
+import { Component, For } from "solid-js";
 import { useConfigProvider } from '../providers/ConfigProvider';
-import { ConfigLocation, getConfigPaths } from "../settings";
 
 const AppMenu: Component = () => {
-    const [knownConfigs] = createResource<ConfigLocation[]>(
-        async () => {
-            return await getConfigPaths();
-        },
-        {
-            initialValue: []
-        }
-    );
     const configContext = useConfigProvider();
 
     return (
@@ -33,7 +24,7 @@ const AppMenu: Component = () => {
                     </a>
                     <div class="navbar-item has-dropdown is-hoverable"
                         classList={{
-                            'is-hidden': knownConfigs.latest.length === 0,
+                            'is-hidden': configContext?.knownConfigs.latest.length === 0,
                         }}>
                         <a class="navbar-link">
                             <AiTwotoneFolderOpen />&nbsp;
@@ -42,7 +33,7 @@ const AppMenu: Component = () => {
 
                         <div class="navbar-dropdown">
                             <hr class="dropdown-divider" />
-                            <For each={knownConfigs.latest} fallback={<div class="menu-item"><em>No recent configs</em></div>}>{(configPath) =>
+                            <For each={configContext?.knownConfigs.latest} fallback={<div class="menu-item"><em>No recent configs</em></div>}>{(configPath) =>
                                 <div class="menu-item"
                                     onClick={() => {
                                         configContext?.setActiveConfig(configPath)

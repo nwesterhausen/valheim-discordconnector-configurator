@@ -1,7 +1,7 @@
 import { createContextProvider } from '@solid-primitives/context';
-import { createMemo, createSignal } from 'solid-js';
+import { createMemo, createResource, createSignal } from 'solid-js';
 import { ConfigTypes, FileNameForType } from '../ConfigFileHelper';
-import { ConfigLocation } from '../settings';
+import { ConfigLocation, getConfigPaths } from '../settings';
 
 export interface ConfigFileListing {
     configType: string;
@@ -27,9 +27,21 @@ export const [ConfigProvider, useConfigProvider] = createContextProvider(() => {
         return files;
     });
 
+    // Resource for known config values
+    const [knownConfigs, { refetch }] = createResource<ConfigLocation[]>(
+        async () => {
+            return await getConfigPaths();
+        },
+        {
+            initialValue: []
+        }
+    );
+
     return {
         activeConfig,
         setActiveConfig,
         configFiles,
+        knownConfigs,
+        refreshKnownConfigs: refetch,
     };
 });
