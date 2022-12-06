@@ -1,16 +1,25 @@
 import { exists } from '@tauri-apps/api/fs';
 import * as log from 'tauri-plugin-log-api';
 import { Store } from 'tauri-plugin-store-api';
+import { webCompatStore } from './browser-store';
 
 const SettingsFile = "configuration.dat";
 const ConfigPaths = "Config.Paths";
 
-const store = new Store(SettingsFile);
+const store = UseBestStore();
 log.attachConsole();
 
 export interface ConfigLocation {
     name: string;
     path: string;
+}
+
+function UseBestStore() {
+    if (window.__TAURI_METADATA__) {
+        return new Store(SettingsFile);
+    }
+    // If there is no TAURI_METADATA then we are running in the browser
+    return webCompatStore;
 }
 
 /**

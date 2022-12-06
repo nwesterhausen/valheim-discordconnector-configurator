@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["Configurator", "discordconnector", "icns"]
+  "cSpell.words": ["Configurator", "discordconnector", "icns"],
+  "conventionalCommits.scopes": ["configs", "store"]
 }
