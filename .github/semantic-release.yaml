@@ -1,0 +1,23 @@
+name: 'Semantic Release'
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  semantic-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Process Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install -g pnpm
+          pnpm install
+          pnpm semantic-release

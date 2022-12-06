@@ -1,0 +1,28 @@
+{
+  "name": "vite-template-solid",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@tauri-apps/api": "^1.2.0",
+    "bulma": "^0.9.4",
+    "bulma-list": "^1.2.0",
+    "bulma-switch": "^2.0.4",
+    "sass": "^1.56.1",
+    "solid-icons": "^1.0.4",
+    "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log#dev",
+    "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store#dev",
+    "typescript": "^4.8.2",
+    "vite": "^3.0.9",
+    "vite-plugin-solid": "^2.3.0"
+  },
+  "dependencies": {
+    "solid-js": "^1.5.1"
+  }
+}
