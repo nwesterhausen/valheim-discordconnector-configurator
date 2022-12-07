@@ -1,4 +1,4 @@
-import { Store } from 'tauri-plugin-store-api';
+import type { Store } from 'tauri-plugin-store-api';
 
 const storage = window.localStorage;
 
@@ -9,7 +9,7 @@ export const webCompatStore: Store = {
     if (typeof value === 'undefined') {
       return;
     }
-
+    console.debug(`Updating store. ${key}:${value}`)
     storage.setItem(key, JSON.stringify(value));
   },
   get: async function <T>(key: string): Promise<T | null> {

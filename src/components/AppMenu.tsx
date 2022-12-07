@@ -2,6 +2,7 @@ import { AiOutlineInfoCircle, AiTwotoneEdit, AiTwotoneEye, AiTwotoneFolderAdd, A
 import { Component, For } from "solid-js";
 import { useConfigProvider } from '../providers/ConfigProvider';
 
+
 const AppMenu: Component = () => {
     const configContext = useConfigProvider();
 
@@ -18,7 +19,8 @@ const AppMenu: Component = () => {
 
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item">
+                    <input type="file" id="configPicker" accept=".json" class="is-hidden" />
+                    <a class="navbar-item" onClick={() => configContext?.openConfigDumpFile()}>
                         <AiTwotoneFolderAdd />&nbsp;
                         Open
                     </a>
@@ -60,7 +62,7 @@ const AppMenu: Component = () => {
                     </a>
 
                 </div>
-
+                <pre>{JSON.stringify(configContext?.configContent())}</pre>
                 <div class="navbar-end">
                     <a class="navbar-item"
                         href="/about">
