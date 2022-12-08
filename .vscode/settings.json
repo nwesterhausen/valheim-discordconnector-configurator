@@ -3,6 +3,7 @@
   "conventionalCommits.scopes": [
     "configs",
     "store",
-    "codespaces"
+    "codespaces",
+    "front-end"
   ]
 }

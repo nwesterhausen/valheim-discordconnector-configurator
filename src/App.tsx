@@ -3,6 +3,7 @@ import { Component } from 'solid-js';
 import AppMenu from './components/AppMenu';
 import About from './pages/About';
 import Editor from './pages/Editor';
+import Index from './pages/Index';
 import Preview from './pages/Preview';
 import Settings from './pages/Settings';
 
@@ -11,6 +12,7 @@ const App: Component = () => {
     <>
       <AppMenu />
       <Routes>
+        <Route path="/" element={<Index />} />
         <Route path='/about' element={<About />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/editor' element={<Editor />} />
