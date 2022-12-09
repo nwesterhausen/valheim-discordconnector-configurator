@@ -1,4 +1,6 @@
 import { Component } from "solid-js";
+import BooleanField from "../components/BooleanField";
+import SelectField from "../components/SelectField";
 
 const Index: Component = () => {
     return <>
@@ -21,6 +23,12 @@ const Index: Component = () => {
                 <li class='list-item'>Use the "Preview" pane to see a sample of output to Discord</li>
                 <li class="list-item">Use the "Export" button to export a set of config files which use your changes</li>
             </ul>
+        </section>
+        <section class="section">
+            <h3 class="heading">Sample Controls</h3>
+            <BooleanField label="sample switch (default false)" />
+            <BooleanField checked label="sample switch (default true)" />
+            <SelectField options={[["Test option 1", "opt1"], ["🫡 Another option", "opt2"]]} label="Choose one of these options" />
         </section>
     </>
 }
